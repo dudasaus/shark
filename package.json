@@ -1,0 +1,16 @@
+{
+  "name": "web-ide",
+  "version": "1.0.0",
+  "description": "Personal IDE project for #creative2017",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "play": "./node_modules/.bin/electron ."
+  },
+  "author": "Austin Dudas",
+  "license": "ISC",
+  "dependencies": {
+    "codemirror": "^5.26.0",
+    "electron": "^1.6.11"
+  }
+}
