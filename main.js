@@ -25,6 +25,7 @@ function createWindow() {
 
     // Show window when ready
     win.once('ready-to-show', () => {
+        win.webContents.openDevTools();
         win.show();
     });
 
