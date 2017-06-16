@@ -2,37 +2,19 @@
     <head>
         <style>
             body {
-                min-height: 100vh;
                 margin: 0;
-            }
-            #cm {
-                height: 100%;
-                width: 100%;
             }
         </style>
 
         <link href="node_modules/codemirror/lib/codemirror.css" rel="stylesheet"/>
-        <link href="node_modules/codemirror/theme/ambiance.css" rel="stylesheet"/>
+        <link href="./ambiance-custom.css" rel="stylesheet"/>
 
     </head>
     <body>
         <textarea id="cm"></textarea>
     </body>
     <script>
-        const CodeMirror = require("codemirror");
-        const NodeConsole = require('console');
-        const fs = require('fs');
-        require("codemirror/mode/htmlmixed/htmlmixed");
-
-        CodeMirror.keyMap.default["Shift-Tab"] = "indentLess";
-        CodeMirror.keyMap.default["Tab"] = "indentMore";
-        var cm = CodeMirror.fromTextArea(document.getElementById("cm"), {
-            lineNumbers: true,
-            mode: 'htmlmixed',
-            theme: 'ambiance',
-            indentUnit: 4
-        });
-        cm.setSize(window.innerWidth,window.innerHeight);
-        cm.setValue(fs.readFileSync('./index.html', {encoding: 'utf8'}))
+        var CMH = require('./CodeMirrorHandler.js');
+        var cm = CMH.CreateEditor(document.getElementById("cm"));
     </script>
 </html>
