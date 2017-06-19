@@ -33,6 +33,16 @@ header {
     position: relative;
 }
 
+.panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    .panel-content {
+        flex-grow: 1;
+    }
+}
+
+
 .tabs-container {
     height: 40px;
     display: flex;
