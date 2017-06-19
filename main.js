@@ -13,7 +13,8 @@ function createWindow() {
     // Create window object
     win = new electron.BrowserWindow({
         width: 800,
-        height: 600
+        height: 600,
+        frame: false
     });
 
     // Load the file to the window

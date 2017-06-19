@@ -1,0 +1,69 @@
+
+@import "colors";
+
+$headerHeight: 40px;
+
+body {
+    margin: 0;
+    background: $darkestGray;
+    color: $lightGray;
+    height: 100vh;
+    font-family: sans-serif;
+    position: relative;
+}
+
+header {
+    background: $darkGray;
+    color: $lightGray;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-shadow: 0px 2px 2px $shadow;
+    box-shadow: 0px 2px 2px $shadow;
+    padding: 4px 8px;
+    -webkit-app-region: drag;
+    div {
+        -webkit-app-region: no-drag;
+    }
+}
+
+.body-wrapper {
+    height: calc(100% - #{$headerHeight});
+    position: relative;
+}
+
+.welcome-panel {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0px 2px 2px $shadow;
+    p {
+        text-align: center;
+    }
+    div.buttons {
+        display: flex;
+        justify-content: center;
+        button {
+            margin: 8px
+        }
+    }
+}
+
+.btn {
+    min-width: 84px;
+    border: 1px solid $lightGray;
+    color: $lightGray;
+    background: transparent;
+    padding: 8px 16px;
+    cursor: pointer;
+    &:focus {
+        outline: none;
+    }
+    &:hover {
+        color: yellow;
+        border-color: yellow;
+    }
+}

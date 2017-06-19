@@ -1,20 +1,31 @@
 <html>
     <head>
-        <style>
-            body {
-                margin: 0;
-            }
-        </style>
-
+        <link href="css/style.css" rel="stylesheet"/>
         <link href="node_modules/codemirror/lib/codemirror.css" rel="stylesheet"/>
         <link href="./ambiance-custom.css" rel="stylesheet"/>
-
+        <title>Shark</title>
     </head>
     <body>
-        <textarea id="cm"></textarea>
+        <header>
+            <h2>Shark</h2>
+            <div>
+                <span id="close">X</span>
+            </div>
+        </header>
+        <div class="body-wrapper">
+            <div class="welcome-panel">
+                <h1>Welcome to Shark</h1>
+                <p>
+                    A text editor built for web developers. <br/>
+                    Click below to make a new file.
+                </p>
+                <div class="buttons">
+                    <button id="new-html" class="btn">HTML</button>
+                    <button id="new-css" class="btn">CSS</button>
+                    <button id="new-js" class="btn">JS</button>
+                </div>
+            </div>
+        </div>
     </body>
-    <script>
-        var CMH = require('./CodeMirrorHandler.js');
-        var cm = CMH.CreateEditor(document.getElementById("cm"));
-    </script>
+    <script src="js/shark.js"></script>
 </html>
