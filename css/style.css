@@ -30,6 +30,32 @@ header {
   height: calc(100% - 40px);
   position: relative; }
 
+.tabs-container {
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  border-bottom: 1px solid #fff;
+  padding: 0px 8px; }
+  .tabs-container .tabs .tab {
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    cursor: pointer; }
+    .tabs-container .tabs .tab.active {
+      border-color: #fff;
+      border-bottom-color: #202020;
+      color: #fff; }
+    .tabs-container .tabs .tab.unsaved {
+      font-style: italic; }
+    .tabs-container .tabs .tab:hover:not(.active) {
+      color: yellow; }
+
 .welcome-panel {
   height: 100%;
   display: -webkit-box;

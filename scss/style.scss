@@ -33,6 +33,35 @@ header {
     position: relative;
 }
 
+.tabs-container {
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    border-bottom: 1px solid $white;
+    padding: 0px 8px;
+    .tabs {
+        .tab {
+            padding: 4px 8px;
+            border: 1px solid $lightGray;
+            display: inline-block;
+            position: relative;
+            top: 1px;
+            cursor: pointer;
+            &.active {
+                border-color: $white;
+                border-bottom-color: $darkestGray;
+                color: $white;
+            }
+            &.unsaved {
+                font-style: italic;
+            }
+            &:hover:not(.active) {
+                color: yellow;
+            }
+        }
+    }
+}
+
 .welcome-panel {
     height: 100%;
     display: flex;
