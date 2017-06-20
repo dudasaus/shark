@@ -40,28 +40,52 @@ class Panel {
         var tab = new Tab();
         this.tabs.push(tab);
         this.tabsNode.appendChild(tab.node);
-        this.activeTab = this.tabs.length - 1;
-        this.makeWelcomeTab();
+        var tabNum = this.tabs.length - 1;
+
+        this.changeTab(tabNum);
 
         var that = this;
-        var tabNum = this.tabs.length - 1;
         tab.node.addEventListener('click', () => {
-            console.log(tab);
-            if (tab.mode == 'welcome') {
-                that.makeWelcomeTab();
-            }
-            else {
-                that.makeEditor(tab.mode);
-                console.log(that);
-            }
-            that.tabsNode.querySelector('.active').classList.remove('active');
-            tab.node.classList.add('active');
-            that.activeTab = tabNum;
+            // console.log(tab);
+            // if (tab.mode == 'welcome') {
+            //     that.makeWelcomeTab();
+            // }
+            // else {
+            //     that.makeEditor(tab.mode);
+            //     console.log(that);
+            // }
+            // that.tabsNode.querySelector('.active').classList.remove('active');
+            // tab.node.classList.add('active');
+            // that.activeTab = tabNum;
+            that.changeTab(tabNum);
         });
     }
 
     setCurrentTabName(name) {
         this.tabs[this.activeTab].setName(name);
+    }
+
+    changeTab(destIndex) {
+        this.saveCurrentTabContent();
+        this.activeTab = destIndex;
+        var destTab = this.tabs[destIndex];
+        if (destTab.mode == 'welcome') {
+            this.makeWelcomeTab();
+        }
+        else {
+            this.makeEditor(destTab.mode);
+            this.editor.setValue(destTab.content);
+        }
+        this.tabsNode.querySelector('.active').classList.remove('active');
+        destTab.node.classList.add('active');
+    }
+
+    saveCurrentTabContent() {
+        console.log(this);
+        if (this.editor != null) {
+            this.tabs[this.activeTab].content = this.editor.getValue();
+            console.log(this.tabs[this.activeTab]);
+        }
     }
 
     welcomeButtons() {
@@ -96,7 +120,7 @@ class Panel {
             this.editor.focus();
         }
         else {
-            this.editor.setValue('');
+            // this.editor.setValue('');
             this.editor.setOption("mode", mode);
         }
     }
