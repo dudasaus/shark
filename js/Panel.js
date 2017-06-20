@@ -41,15 +41,18 @@ class Panel {
         this.tabs.push(tab);
         this.tabsNode.appendChild(tab.node);
         this.activeTab = this.tabs.length - 1;
+        this.makeWelcomeTab();
 
         var that = this;
         var tabNum = this.tabs.length - 1;
         tab.node.addEventListener('click', () => {
+            console.log(tab);
             if (tab.mode == 'welcome') {
                 that.makeWelcomeTab();
             }
             else {
                 that.makeEditor(tab.mode);
+                console.log(that);
             }
             that.tabsNode.querySelector('.active').classList.remove('active');
             tab.node.classList.add('active');
@@ -114,6 +117,7 @@ class Panel {
                         <button id="new-js" class="btn">JS</button>
                     </div>`;
             this.node.replaceChild(freshPanel, this.node.querySelector('.panel-content'));
+            this.editor = null;
             this.welcomeButtons();
         }
     }
