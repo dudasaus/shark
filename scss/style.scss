@@ -48,11 +48,14 @@ header {
     display: flex;
     align-items: flex-end;
     border-bottom: 1px solid $white;
-    padding: 0px 8px;
+    padding: 0px 8px 0px 30px;
     .tabs {
-        .tab {
+        display: flex;
+        .tab, .new-tab {
+            margin-right: 4px;
             padding: 4px 8px;
             border: 1px solid $lightGray;
+            border-bottom-color: transparent;
             display: inline-block;
             position: relative;
             top: 1px;
@@ -68,6 +71,9 @@ header {
             &:hover:not(.active) {
                 color: yellow;
             }
+        }
+        .new-tab {
+            order: 1;
         }
     }
 }

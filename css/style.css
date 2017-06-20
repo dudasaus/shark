@@ -53,22 +53,32 @@ header {
       -ms-flex-align: end;
           align-items: flex-end;
   border-bottom: 1px solid #fff;
-  padding: 0px 8px; }
-  .tabs-container .tabs .tab {
-    padding: 4px 8px;
-    border: 1px solid #ccc;
-    display: inline-block;
-    position: relative;
-    top: 1px;
-    cursor: pointer; }
-    .tabs-container .tabs .tab.active {
-      border-color: #fff;
-      border-bottom-color: #202020;
-      color: #fff; }
-    .tabs-container .tabs .tab.unsaved {
-      font-style: italic; }
-    .tabs-container .tabs .tab:hover:not(.active) {
-      color: yellow; }
+  padding: 0px 8px 0px 30px; }
+  .tabs-container .tabs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex; }
+    .tabs-container .tabs .tab, .tabs-container .tabs .new-tab {
+      margin-right: 4px;
+      padding: 4px 8px;
+      border: 1px solid #ccc;
+      border-bottom-color: transparent;
+      display: inline-block;
+      position: relative;
+      top: 1px;
+      cursor: pointer; }
+      .tabs-container .tabs .tab.active, .tabs-container .tabs .new-tab.active {
+        border-color: #fff;
+        border-bottom-color: #202020;
+        color: #fff; }
+      .tabs-container .tabs .tab.unsaved, .tabs-container .tabs .new-tab.unsaved {
+        font-style: italic; }
+      .tabs-container .tabs .tab:hover:not(.active), .tabs-container .tabs .new-tab:hover:not(.active) {
+        color: yellow; }
+    .tabs-container .tabs .new-tab {
+      -webkit-box-ordinal-group: 2;
+          -ms-flex-order: 1;
+              order: 1; }
 
 .welcome-panel {
   height: 100%;

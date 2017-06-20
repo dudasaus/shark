@@ -10,8 +10,7 @@ document.getElementById("close").addEventListener("click", () => {
 
 // var cm = CMH.CreateEditor(document.getElementById("cm")); */
 
-
-
 var panels = [new Panel()];
+var activePanel = 0;
 
 document.querySelector('.body-wrapper').appendChild(panels[0].node);

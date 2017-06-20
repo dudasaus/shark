@@ -6,7 +6,7 @@ CodeMirror.keyMap.default["Shift-Tab"] = "indentLess";
 CodeMirror.keyMap.default["Tab"] = "indentMore";
 
 // Creates a CodeMirror editor with settings that I like
-function CreateEditor(textarea, mode='htmlmixed', fullscreen=true) {
+function CreateEditor(textarea, mode='htmlmixed', fullscreen=false) {
 
     var editor = CodeMirror.fromTextArea(textarea, {
         lineNumbers: true,
@@ -52,7 +52,7 @@ function CreateEditor(textarea, mode='htmlmixed', fullscreen=true) {
         // editor.setValue(fs.readFileSync('./index.html', {encoding: 'utf8'}))
     }
 
-    return cm;
+    return editor;
 
 }
 
