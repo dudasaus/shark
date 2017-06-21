@@ -46,17 +46,11 @@ class Panel {
 
         var that = this;
         tab.node.addEventListener('click', () => {
-            // console.log(tab);
-            // if (tab.mode == 'welcome') {
-            //     that.makeWelcomeTab();
-            // }
-            // else {
-            //     that.makeEditor(tab.mode);
-            //     console.log(that);
-            // }
-            // that.tabsNode.querySelector('.active').classList.remove('active');
-            // tab.node.classList.add('active');
-            // that.activeTab = tabNum;
+            if (tabNum == that.activeTab) {
+                that.updateCurrentTabContent();
+                tab.save();
+            }
+            else
             that.changeTab(tabNum);
         });
     }
@@ -66,7 +60,7 @@ class Panel {
     }
 
     changeTab(destIndex) {
-        this.saveCurrentTabContent();
+        this.updateCurrentTabContent();
         this.activeTab = destIndex;
         var destTab = this.tabs[destIndex];
         if (destTab.mode == 'welcome') {
@@ -80,7 +74,7 @@ class Panel {
         destTab.node.classList.add('active');
     }
 
-    saveCurrentTabContent() {
+    updateCurrentTabContent() {
         console.log(this);
         if (this.editor != null) {
             this.tabs[this.activeTab].content = this.editor.getValue();
