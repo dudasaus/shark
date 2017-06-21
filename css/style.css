@@ -53,12 +53,12 @@ header {
       -ms-flex-align: end;
           align-items: flex-end;
   border-bottom: 1px solid #fff;
-  padding: 0px 8px 0px 30px; }
+  padding: 0px 8px 0px 8px; }
   .tabs-container .tabs {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex; }
-    .tabs-container .tabs .tab, .tabs-container .tabs .new-tab {
+    .tabs-container .tabs .tab, .tabs-container .tabs .new-tab, .tabs-container .tabs .menu-tab {
       margin-right: 4px;
       padding: 4px 8px;
       border: 1px solid #ccc;
@@ -67,18 +67,22 @@ header {
       position: relative;
       top: 1px;
       cursor: pointer; }
-      .tabs-container .tabs .tab.active, .tabs-container .tabs .new-tab.active {
+      .tabs-container .tabs .tab.active, .tabs-container .tabs .new-tab.active, .tabs-container .tabs .menu-tab.active {
         border-color: #fff;
         border-bottom-color: #202020;
         color: #fff; }
-      .tabs-container .tabs .tab.unsaved, .tabs-container .tabs .new-tab.unsaved {
+      .tabs-container .tabs .tab.unsaved, .tabs-container .tabs .new-tab.unsaved, .tabs-container .tabs .menu-tab.unsaved {
         font-style: italic; }
-      .tabs-container .tabs .tab:hover:not(.active), .tabs-container .tabs .new-tab:hover:not(.active) {
+      .tabs-container .tabs .tab:hover:not(.active), .tabs-container .tabs .new-tab:hover:not(.active), .tabs-container .tabs .menu-tab:hover:not(.active) {
         color: yellow; }
     .tabs-container .tabs .new-tab {
       -webkit-box-ordinal-group: 2;
           -ms-flex-order: 1;
               order: 1; }
+    .tabs-container .tabs .menu-tab {
+      -webkit-box-ordinal-group: 0;
+          -ms-flex-order: -1;
+              order: -1; }
 
 .welcome-panel {
   height: 100%;
@@ -120,3 +124,59 @@ header {
   .btn:hover {
     color: yellow;
     border-color: yellow; }
+
+.icon-btn {
+  color: #ccc;
+  cursor: pointer; }
+  .icon-btn:hover {
+    color: yellow; }
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+  transition: all 0.2s;
+  z-index: 10; }
+  .overlay .menu {
+    height: 100%;
+    width: 300px;
+    background: #202020;
+    position: absolute;
+    right: calc(100% - 300px);
+    transition: right 0.2s;
+    /*#menu-close {
+            position: absolute;
+            padding: 4px;
+            top: 0;
+            right: 0;
+        }*/ }
+    .overlay .menu .menu-bar {
+      padding: 4px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between; }
+    .overlay .menu .menu-buttons {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center; }
+      .overlay .menu .menu-buttons .btn {
+        margin: 4px 0px; }
+  .overlay.hidden {
+    display: none; }
+  .overlay.hiding {
+    background: transparent; }
+    .overlay.hiding .menu {
+      right: 100%; }

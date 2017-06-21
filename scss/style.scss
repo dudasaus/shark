@@ -1,5 +1,5 @@
-
 @import "colors";
+// @import "menu";
 
 $headerHeight: 40px;
 
@@ -48,10 +48,10 @@ header {
     display: flex;
     align-items: flex-end;
     border-bottom: 1px solid $white;
-    padding: 0px 8px 0px 30px;
+    padding: 0px 8px 0px 8px;
     .tabs {
         display: flex;
-        .tab, .new-tab {
+        .tab, .new-tab, .menu-tab {
             margin-right: 4px;
             padding: 4px 8px;
             border: 1px solid $lightGray;
@@ -74,6 +74,9 @@ header {
         }
         .new-tab {
             order: 1;
+        }
+        .menu-tab {
+            order: -1;
         }
     }
 }
@@ -108,7 +111,62 @@ header {
         outline: none;
     }
     &:hover {
-        color: yellow;
-        border-color: yellow;
+        color: $yellow;
+        border-color: $yellow;
+    }
+}
+
+.icon-btn {
+    color: $lightGray;
+    cursor: pointer;
+    &:hover {
+        color: $yellow;
+    }
+}
+
+.overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: $shadow;
+    transition: all 0.2s;
+    z-index: 10;
+    .menu {
+        height: 100%;
+        width: 300px;
+        background: $darkestGray;
+        position: absolute;
+        right: calc(100% - 300px);
+        transition: right 0.2s;
+        .menu-bar {
+            padding: 4px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .menu-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .btn {
+                margin: 4px 0px;
+            }
+        }
+        /*#menu-close {
+            position: absolute;
+            padding: 4px;
+            top: 0;
+            right: 0;
+        }*/
+    }
+    &.hidden {
+        display: none;
+    }
+    &.hiding {
+        background: rgba(0,0,0,0);
+        .menu {
+            right: 100%;
+        }
     }
 }

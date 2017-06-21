@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 
 const modeToFile = {
         htmlmixed: 'html',
@@ -25,25 +26,27 @@ class Tab {
 
     save() {
         var that = this;
-        if (this.filePath == null) {
-            remote.dialog.showSaveDialog({}, (path) => {
-                if (path != undefined) {
-                    that.filePath = path;
-                    that.setName(path.split('/\\').pop());
-                    that.save();
-                }
-            });
-        }
-        else {
-            fs.writeFile(this.filePath, this.content, (err) => {
-                if (err) {
-                    console.log(err);
-                }
-                else {
-                    that.saved = true;
-                    that.node.classList.remove('unsaved');
-                }
-            });
+        if (this.mode != 'welcome') {
+            if (this.filePath == null) {
+                remote.dialog.showSaveDialog({}, (file) => {
+                    if (file != undefined) {
+                        that.filePath = file;
+                        that.setName(path.basename(file));
+                        that.save();
+                    }
+                });
+            }
+            else {
+                fs.writeFile(this.filePath, this.content, (err) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    else {
+                        that.saved = true;
+                        that.node.classList.remove('unsaved');
+                    }
+                });
+            }
         }
     }
 }

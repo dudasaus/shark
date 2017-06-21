@@ -7,6 +7,7 @@ class Panel {
         this.node.innerHTML = `
             <div class="tabs-container">
                 <div class="tabs">
+                    <span class="menu-tab" id="menu-btn">M</span>
                     <span class="new-tab">+</span>
                 </div>
             </div>
@@ -34,6 +35,10 @@ class Panel {
             this.tabsNode.querySelector('.active').classList.remove('active');
             this.newTab();
         });
+    }
+
+    currentTab() {
+        return this.tabs[this.activeTab];
     }
 
     newTab() {
@@ -75,10 +80,8 @@ class Panel {
     }
 
     updateCurrentTabContent() {
-        console.log(this);
         if (this.editor != null) {
             this.tabs[this.activeTab].content = this.editor.getValue();
-            console.log(this.tabs[this.activeTab]);
         }
     }
 
