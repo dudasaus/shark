@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "codemirror": "^5.26.0",
-    "electron": "^1.6.11"
+    "electron": "^1.6.11",
+    "mousetrap": "^1.6.1"
   }
 }

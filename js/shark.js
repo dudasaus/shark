@@ -4,6 +4,7 @@ const Tab = require('./js/Tab.js');
 const Panel = require('./js/Panel.js');
 const path = require('path');
 const Modes = require('./js/Modes.js');
+const Mousetrap = require("mousetrap");
 const fs = require('fs');
 
 
@@ -45,6 +46,7 @@ document.getElementById("menu-btn-new").addEventListener("click", () => {
     newButton();
     closeMenu();
 });
+Mousetrap.bind(['ctrl+n','command+n'], newButton);
 
 // Save
 function saveButton() {
@@ -55,6 +57,7 @@ document.getElementById("menu-btn-save").addEventListener("click", () => {
     saveButton();
     closeMenu();
 });
+Mousetrap.bind(['ctrl+s','command+s'], saveButton);
 
 // Open
 function openButton() {
@@ -64,3 +67,4 @@ document.getElementById("menu-btn-open").addEventListener("click", () => {
     openButton();
     closeMenu();
 });
+Mousetrap.bind(['ctrl+o','command+o'], openButton);

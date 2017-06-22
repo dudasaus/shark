@@ -62,6 +62,11 @@ class Panel {
     }
 
     closeTab(index) {
+        /*for (var t in this.tabs) {
+            // console.log(this.tabs[t].content);
+        }*/
+        console.log(`Expected content: ${this.tabs[1].content}`)
+
         // Remove node
         this.tabs[index].node.remove();
 
@@ -79,9 +84,12 @@ class Panel {
             }
             else if (this.activeTab == index) {
                 if (this.activeTab > 0) {
-                    --this.activeTab;
+                    //--this.activeTab;
                 }
-                this.changeTab(Math.min(index, this.tabs.length - 1));
+                console.log(`content: ${this.tabs[0].content}`)
+                this.changeTab(Math.min(index, this.tabs.length - 1), false);
+                console.log(`content: ${this.tabs[0].content}`)
+
             }
             else {
                 --this.activeTab;
@@ -125,8 +133,10 @@ class Panel {
         this.tabs[this.activeTab].setName(name);
     }
 
-    changeTab(destIndex) {
-        this.updateCurrentTabContent();
+    changeTab(destIndex, uc = true) {
+        if (uc) {
+            this.updateCurrentTabContent();
+        }
         this.activeTab = destIndex;
         var destTab = this.tabs[destIndex];
         if (destTab.mode == 'welcome') {
