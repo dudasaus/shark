@@ -55,6 +55,16 @@ class Tab {
             }
         }
     }
+
+    markChange(content = null) {
+        if (this.saved) {
+            this.saved = false;
+            this.node.classList.add("unsaved");
+        }
+        if (content != null) {
+            this.content = content;
+        }
+    }
 }
 
 module.exports = Tab;

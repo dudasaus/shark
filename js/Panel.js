@@ -188,6 +188,7 @@ class Panel {
             this.editor.setSize(freshPanel.clientWidth, freshPanel.clientHeight);
             this.editor.refresh();
             this.editor.focus();
+            this.editor.on("change", this.editorChange.bind(this));
             this.applyToEditor(this.editor);
         }
         else {
@@ -214,6 +215,12 @@ class Panel {
             this.node.replaceChild(freshPanel, this.node.querySelector('.panel-content'));
             this.editor = null;
             this.welcomeButtons();
+        }
+    }
+
+    editorChange() {
+        if (this.editor != null) {
+            this.tabs[this.activeTab].markChange(this.editor.getValue());
         }
     }
 }
