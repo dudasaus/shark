@@ -50,13 +50,49 @@ class Panel {
 
         var that = this;
         tab.node.addEventListener('click', (e) => {
-            // console.log(e.target.classList);
-            if (tabNum != that.activeTab && !e.target.classList.contains("tab-close-btn")) {
-                that.changeTab(tabNum);
+            if (tab.index != that.activeTab && !e.target.classList.contains("tab-close-btn")) {
+                that.changeTab(tab.index);
             }
+        });
+        tab.node.querySelector('.tab-close-btn').addEventListener("click", (e) => {
+            that.closeTab(tab.index);
         });
 
         return tab;
+    }
+
+    closeTab(index) {
+        // Remove node
+        this.tabs[index].node.remove();
+
+        // Decrement stored indices
+        for (var i = index + 1; i < this.tabs.length; ++i) {
+            --this.tabs[i].index;
+        }
+
+        // Removes from tabs array
+        this.tabs.splice(index, 1);
+
+        if (this.activeTab >= index) {
+            if (this.tabs.length == 0) {
+                this.newTab();
+            }
+            else if (this.activeTab == index) {
+                if (this.activeTab > 0) {
+                    --this.activeTab;
+                }
+                this.changeTab(Math.min(index, this.tabs.length - 1));
+            }
+            else {
+                --this.activeTab;
+            }
+        }
+
+        // Debug
+        // for (var i = 0; i < this.tabs.length; ++i) {
+        //     console.log(i, this.tabs[i].index);
+        // }
+
     }
 
     openFile() {
@@ -100,13 +136,26 @@ class Panel {
             this.makeEditor(destTab.mode);
             this.editor.setValue(destTab.content);
         }
-        this.tabsNode.querySelector('.active').classList.remove('active');
+        try {
+            this.tabsNode.querySelector('.active').classList.remove('active');
+        }
+        catch (err) {
+            // Do nothing
+        }
         destTab.node.classList.add('active');
     }
 
     updateCurrentTabContent() {
-        if (this.editor != null) {
-            this.tabs[this.activeTab].content = this.editor.getValue();
+        try {
+            if (this.editor != null && this.activeTab < this.tabs.length) {
+                this.tabs[this.activeTab].content = this.editor.getValue();
+            }
+        }
+        catch (err) {
+            // console.log("activeTab: ", this.activeTab);
+            // console.log("tabs.length: ", this.tabs.length);
+            // console.log("tabs[activeTab]: ", this.tabs[this.activeTab]);
+            console.error(err);
         }
     }
 

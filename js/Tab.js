@@ -10,9 +10,6 @@ class Tab {
         tabClose.innerText = 'X';
         tabClose.classList.add("tab-close-btn");
         this.node.appendChild(tabClose);
-        tabClose.addEventListener("click", (e) => {
-            e.preventDefault();
-        });
 
         // Properties
         this.mode = "welcome";
