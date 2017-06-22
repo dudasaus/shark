@@ -2,6 +2,10 @@ const CMH = require('./CodeMirrorHandler.js');
 const remote = require('electron').remote;
 const Tab = require('./js/Tab.js');
 const Panel = require('./js/Panel.js');
+const path = require('path');
+const Modes = require('./js/Modes.js');
+const fs = require('fs');
+
 
 // Build the starting panel
 var panels = [new Panel()];
@@ -44,9 +48,19 @@ document.getElementById("menu-btn-new").addEventListener("click", () => {
 
 // Save
 function saveButton() {
+    panels[activePanel].updateCurrentTabContent();
     panels[activePanel].currentTab().save();
 }
 document.getElementById("menu-btn-save").addEventListener("click", () => {
     saveButton();
+    closeMenu();
+});
+
+// Open
+function openButton() {
+    panels[activePanel].openFile();
+}
+document.getElementById("menu-btn-open").addEventListener("click", () => {
+    openButton();
     closeMenu();
 });

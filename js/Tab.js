@@ -1,22 +1,17 @@
-const fs = require('fs');
-const path = require('path');
-
-const modeToFile = {
-        htmlmixed: 'html',
-        css: 'css',
-        javascript: 'js'
-};
-
 class Tab {
     constructor() {
         this.node = document.createElement("span");
-        this.node.classList.add("tab", "unsaved", "active");
+        this.node.classList.add("tab");
         this.mode = "welcome";
         this.name = "New tab";
         this.content = "";
         this.filePath = null;
         this.saved = false;
         this.setName("New tab");
+    }
+
+    setAsNew() {
+        this.node.classList.add("unsaved", "active");
     }
 
     setName(name) {

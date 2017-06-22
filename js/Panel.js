@@ -1,5 +1,3 @@
-const Tab = require('../js/Tab.js');
-
 class Panel {
     constructor() {
         this.node = document.createElement("div");
@@ -43,6 +41,7 @@ class Panel {
 
     newTab() {
         var tab = new Tab();
+        tab.setAsNew();
         this.tabs.push(tab);
         this.tabsNode.appendChild(tab.node);
         var tabNum = this.tabs.length - 1;
@@ -51,12 +50,36 @@ class Panel {
 
         var that = this;
         tab.node.addEventListener('click', () => {
-            if (tabNum == that.activeTab) {
-                that.updateCurrentTabContent();
-                tab.save();
+            if (tabNum != that.activeTab) {
+                that.changeTab(tabNum);
             }
-            else
-            that.changeTab(tabNum);
+        });
+
+        return tab;
+    }
+
+    openFile() {
+        var that = this;
+        remote.dialog.showOpenDialog({}, (file) => {
+            if (file.length != 0) {
+                file = file[0];
+                var ext = path.extname(file);
+                var mode = Modes.extToMode(ext);
+                if (mode != null) {
+                    var tab = that.newTab();
+                    that.makeEditor(mode);
+                    fs.readFile(file, 'utf8', (err, data) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        else {
+                            that.editor.setValue(data);
+                            tab.setName(path.basename(file));
+                            tab.mode = mode;
+                        }
+                    });
+                }
+            }
         });
     }
 
