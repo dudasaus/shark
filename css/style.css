@@ -75,6 +75,12 @@ header {
         font-style: italic; }
       .tabs-container .tabs .tab:hover:not(.active), .tabs-container .tabs .new-tab:hover:not(.active), .tabs-container .tabs .menu-tab:hover:not(.active) {
         color: yellow; }
+      .tabs-container .tabs .tab .tab-close-btn, .tabs-container .tabs .new-tab .tab-close-btn, .tabs-container .tabs .menu-tab .tab-close-btn {
+        color: #ccc;
+        margin-left: 8px;
+        font-style: normal; }
+        .tabs-container .tabs .tab .tab-close-btn:hover, .tabs-container .tabs .new-tab .tab-close-btn:hover, .tabs-container .tabs .menu-tab .tab-close-btn:hover {
+          color: red; }
     .tabs-container .tabs .new-tab {
       -webkit-box-ordinal-group: 2;
           -ms-flex-order: 1;

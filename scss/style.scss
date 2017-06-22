@@ -71,6 +71,14 @@ header {
             &:hover:not(.active) {
                 color: yellow;
             }
+            .tab-close-btn {
+                color: $lightGray;
+                margin-left: 8px;
+                font-style: normal;
+                &:hover {
+                    color: $red;
+                }
+            }
         }
         .new-tab {
             order: 1;

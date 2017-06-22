@@ -39,9 +39,9 @@ class Panel {
         return this.tabs[this.activeTab];
     }
 
-    newTab() {
-        var tab = new Tab();
-        tab.setAsNew();
+    newTab(nt = true) {
+        var tab = new Tab(this.tabs.length);
+        if (nt) tab.setAsNew();
         this.tabs.push(tab);
         this.tabsNode.appendChild(tab.node);
         var tabNum = this.tabs.length - 1;
@@ -49,8 +49,9 @@ class Panel {
         this.changeTab(tabNum);
 
         var that = this;
-        tab.node.addEventListener('click', () => {
-            if (tabNum != that.activeTab) {
+        tab.node.addEventListener('click', (e) => {
+            // console.log(e.target.classList);
+            if (tabNum != that.activeTab && !e.target.classList.contains("tab-close-btn")) {
                 that.changeTab(tabNum);
             }
         });
@@ -66,7 +67,7 @@ class Panel {
                 var ext = path.extname(file);
                 var mode = Modes.extToMode(ext);
                 if (mode != null) {
-                    var tab = that.newTab();
+                    var tab = that.newTab(false);
                     that.makeEditor(mode);
                     fs.readFile(file, 'utf8', (err, data) => {
                         if (err) {
@@ -76,6 +77,7 @@ class Panel {
                             that.editor.setValue(data);
                             tab.setName(path.basename(file));
                             tab.mode = mode;
+                            tab.filePath = file;
                         }
                     });
                 }
