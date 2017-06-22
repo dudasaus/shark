@@ -9,8 +9,15 @@ const fs = require('fs');
 
 
 // Build the starting panel
-var panels = [new Panel()];
+var panels = [];
 var activePanel = 0;
+newPanel();
+
+function newPanel() {
+    var panel = new Panel();
+    panel.applyToEditor = editorKeyboardShortcuts;
+    panels.push(panel);
+}
 
 document.querySelector('.body-wrapper').appendChild(panels[0].node);
 
@@ -38,6 +45,12 @@ function closeMenu() {
 document.querySelector('.menu-tab').addEventListener("click", openMenu);
 document.getElementById("menu-close").addEventListener("click", closeMenu);
 
+var keyboardShortcuts = {};
+function editorKeyboardShortcuts(e) {
+    e.setOption("extraKeys", keyboardShortcuts);
+}
+
+
 // New
 function newButton() {
     panels[activePanel].newTab();
@@ -47,6 +60,9 @@ document.getElementById("menu-btn-new").addEventListener("click", () => {
     closeMenu();
 });
 Mousetrap.bind(['ctrl+n','command+n'], newButton);
+keyboardShortcuts['Ctrl-N'] = newButton;
+keyboardShortcuts['Cmd-N'] = newButton;
+
 
 // Save
 function saveButton() {
@@ -58,6 +74,9 @@ document.getElementById("menu-btn-save").addEventListener("click", () => {
     closeMenu();
 });
 Mousetrap.bind(['ctrl+s','command+s'], saveButton);
+keyboardShortcuts['Ctrl-S'] = saveButton;
+keyboardShortcuts['Cmd-S'] = saveButton;
+
 
 // Open
 function openButton() {
@@ -68,3 +87,5 @@ document.getElementById("menu-btn-open").addEventListener("click", () => {
     closeMenu();
 });
 Mousetrap.bind(['ctrl+o','command+o'], openButton);
+keyboardShortcuts['Ctrl-O'] = openButton
+keyboardShortcuts['Cmd-O'] = openButton

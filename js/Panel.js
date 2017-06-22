@@ -62,11 +62,6 @@ class Panel {
     }
 
     closeTab(index) {
-        /*for (var t in this.tabs) {
-            // console.log(this.tabs[t].content);
-        }*/
-        console.log(`Expected content: ${this.tabs[1].content}`)
-
         // Remove node
         this.tabs[index].node.remove();
 
@@ -83,13 +78,7 @@ class Panel {
                 this.newTab();
             }
             else if (this.activeTab == index) {
-                if (this.activeTab > 0) {
-                    //--this.activeTab;
-                }
-                console.log(`content: ${this.tabs[0].content}`)
                 this.changeTab(Math.min(index, this.tabs.length - 1), false);
-                console.log(`content: ${this.tabs[0].content}`)
-
             }
             else {
                 --this.activeTab;
@@ -106,7 +95,7 @@ class Panel {
     openFile() {
         var that = this;
         remote.dialog.showOpenDialog({}, (file) => {
-            if (file.length != 0) {
+            if (file != undefined && file.length != 0) {
                 file = file[0];
                 var ext = path.extname(file);
                 var mode = Modes.extToMode(ext);
@@ -199,6 +188,7 @@ class Panel {
             this.editor.setSize(freshPanel.clientWidth, freshPanel.clientHeight);
             this.editor.refresh();
             this.editor.focus();
+            this.applyToEditor(this.editor);
         }
         else {
             // this.editor.setValue('');
