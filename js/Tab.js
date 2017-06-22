@@ -56,6 +56,19 @@ class Tab {
         }
     }
 
+    saveAs() {
+        var that = this;
+        if (this.mode != 'welcome') {
+            remote.dialog.showSaveDialog({}, (file) => {
+                if (file != undefined) {
+                    that.filePath = file;
+                    that.setName(path.basename(file));
+                    that.save();
+                }
+            });
+        }
+    }
+
     markChange(content = null) {
         if (this.saved) {
             this.saved = false;

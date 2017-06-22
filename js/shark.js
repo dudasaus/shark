@@ -63,7 +63,6 @@ Mousetrap.bind(['ctrl+n','command+n'], newButton);
 keyboardShortcuts['Ctrl-N'] = newButton;
 keyboardShortcuts['Cmd-N'] = newButton;
 
-
 // Save
 function saveButton() {
     panels[activePanel].updateCurrentTabContent();
@@ -77,6 +76,18 @@ Mousetrap.bind(['ctrl+s','command+s'], saveButton);
 keyboardShortcuts['Ctrl-S'] = saveButton;
 keyboardShortcuts['Cmd-S'] = saveButton;
 
+// Save as
+function saveAsButton() {
+    panels[activePanel].updateCurrentTabContent();
+    panels[activePanel].currentTab().saveAs();
+}
+document.getElementById("menu-btn-saveas").addEventListener("click", () => {
+    saveAsButton();
+    closeMenu();
+});
+Mousetrap.bind(['ctrl+shift+s','command+shift+s'], saveAsButton);
+keyboardShortcuts['Shift-Ctrl-S'] = saveAsButton;
+keyboardShortcuts['Shift-Cmd-S'] = saveAsButton;
 
 // Open
 function openButton() {

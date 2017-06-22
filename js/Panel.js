@@ -111,6 +111,7 @@ class Panel {
                             tab.setName(path.basename(file));
                             tab.mode = mode;
                             tab.filePath = file;
+                            tab.saved = true;
                         }
                     });
                 }
