@@ -14,7 +14,8 @@ function createWindow() {
     win = new electron.BrowserWindow({
         width: 800,
         height: 600,
-        frame: false
+        frame: false,
+        show: false
     });
 
     // Load the file to the window
@@ -26,7 +27,6 @@ function createWindow() {
 
     // Show window when ready
     win.once('ready-to-show', () => {
-        win.webContents.openDevTools();
         win.show();
     });
 

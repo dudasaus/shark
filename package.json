@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Personal IDE project for #creative2017",
   "main": "main.js",
+  "repository": "https://github.com/dudasaus/shark",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "play": "./node_modules/.bin/electron ."

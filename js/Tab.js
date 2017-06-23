@@ -34,7 +34,9 @@ class Tab {
         var that = this;
         if (this.mode != 'welcome') {
             if (this.filePath == null) {
-                remote.dialog.showSaveDialog({}, (file) => {
+                remote.dialog.showSaveDialog({
+                    defaultPath: remote.app.getPath('home')
+                }, (file) => {
                     if (file != undefined) {
                         that.filePath = file;
                         that.setName(path.basename(file));

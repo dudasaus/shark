@@ -3,6 +3,7 @@ const remote = require('electron').remote;
 const Tab = require('./js/Tab.js');
 const Panel = require('./js/Panel.js');
 const path = require('path');
+const url = require('url');
 const Modes = require('./js/Modes.js');
 const Mousetrap = require("mousetrap");
 const fs = require('fs');
@@ -12,15 +13,12 @@ const fs = require('fs');
 var panels = [];
 var activePanel = 0;
 newPanel();
-
 function newPanel() {
     var panel = new Panel();
     panel.applyToEditor = editorKeyboardShortcuts;
     panels.push(panel);
 }
-
 document.querySelector('.body-wrapper').appendChild(panels[0].node);
-
 
 // Close button
 document.getElementById("close").addEventListener("click", () => {
@@ -98,5 +96,35 @@ document.getElementById("menu-btn-open").addEventListener("click", () => {
     closeMenu();
 });
 Mousetrap.bind(['ctrl+o','command+o'], openButton);
-keyboardShortcuts['Ctrl-O'] = openButton
-keyboardShortcuts['Cmd-O'] = openButton
+keyboardShortcuts['Ctrl-O'] = openButton;
+keyboardShortcuts['Cmd-O'] = openButton;
+
+// Preview window
+previewWindow = null;
+function previewHtml() {
+    var tab = panels[activePanel].currentTab();
+    if (tab.mode == "htmlmixed" && tab.filePath != null) {
+        tab.save();
+        if (previewWindow == null) {
+            previewWindow = new remote.BrowserWindow({
+                show: true,
+                title: "Preview",
+                webPreferences: { sandbox: true }
+            }).on("close", () => {
+                previewWindow = null;
+            })
+        }
+        previewWindow.loadURL(url.format({
+            pathname: tab.filePath,
+            protocol: 'file:',
+            slashes: true
+        }));
+    }
+}
+document.getElementById("menu-btn-preview").addEventListener("click", () => {
+    previewHtml();
+    closeMenu();
+});
+Mousetrap.bind(['ctrl+p','command+p'], previewHtml);
+keyboardShortcuts['Ctrl-P'] = previewHtml;
+keyboardShortcuts['Cmd-P'] = previewHtml;
