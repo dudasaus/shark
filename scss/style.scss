@@ -157,9 +157,32 @@ header {
             display: flex;
             flex-direction: column;
             align-items: center;
-            .btn {
-                margin: 4px 0px;
+            .menu-btn {
+                cursor: pointer;
+                margin: 0px 0px;
                 text-align: center;
+                width: calc(100%);
+                padding: 16px 0px;
+                border: none;
+                border-bottom: 1px solid $lightGray;
+                transition: all 0.2s;
+                position: relative;
+                &:nth-of-type(1) {
+                    border-top: 1px solid $lightGray;
+                }
+                &:hover {
+                    background: $darkGray;
+                }
+                &::after {
+                    content: attr(data-sc);
+                    background: $shadow;
+                    display: inline-block;
+                    position: absolute;
+                    right: 12px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    padding: 4px 8px;
+                }
             }
         }
         /*#menu-close {
