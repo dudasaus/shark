@@ -113,12 +113,16 @@ function previewHtml() {
             }).on("close", () => {
                 previewWindow = null;
             })
+
+        } else {
+            previewWindow.show();
         }
         previewWindow.loadURL(url.format({
             pathname: tab.filePath,
             protocol: 'file:',
             slashes: true
         }));
+        previewWindow.webContents.reload();
     }
 }
 document.getElementById("menu-btn-preview").addEventListener("click", () => {
