@@ -6,7 +6,8 @@
   "repository": "https://github.com/dudasaus/shark",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "play": "./node_modules/.bin/electron ."
+    "play": "./node_modules/.bin/electron .",
+    "build": "./node_modules/.bin/electron-packager ."
   },
   "author": "Austin Dudas",
   "license": "ISC",
@@ -14,5 +15,8 @@
     "codemirror": "^5.26.0",
     "electron": "^1.6.11",
     "mousetrap": "^1.6.1"
+  },
+  "devDependencies": {
+    "electron-packager": "^8.7.1"
   }
 }
