@@ -133,8 +133,13 @@ class Panel {
             this.makeWelcomeTab();
         }
         else {
+            var tempSaved = destTab.saved;
             this.makeEditor(destTab.mode);
             this.editor.setValue(destTab.content);
+            if (tempSaved) {
+                destTab.saved = true;
+                destTab.node.classList.remove('unsaved');
+            }
         }
         try {
             this.tabsNode.querySelector('.active').classList.remove('active');
