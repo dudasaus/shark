@@ -5,6 +5,8 @@ A text editor for web developers. Made for MHacks Nano.
 - HTML, CSS, and JavaScript syntax highlighting
 - Multiple tabs
 - HTML file preview
+- Built in preprocessing for SCSS and Babel
+- Bracket and tag auto closing and indentation
 - Keyboard shortcuts
 
 ## Technologies used
@@ -21,6 +23,7 @@ make
 ```
 
 ## Planned features
-- Automatic preprocessing (Pug, SCSS, Babel)
+- Pug HTML preprocessing
 - Quick add script and stylesheet tags into HTML detected from other files opened in the editor
+- Smart auto completion for css rules and properties
 - Executables for Windows, Linux, and OSX
