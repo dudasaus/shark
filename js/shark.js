@@ -2,6 +2,7 @@ const CMH = require('./CodeMirrorHandler.js');
 const remote = require('electron').remote;
 const Tab = require('./js/Tab.js');
 const Panel = require('./js/Panel.js');
+const CompileFunctions = require('./js/CompileFunctions.js');
 const path = require('path');
 const url = require('url');
 const Modes = require('./js/Modes.js');

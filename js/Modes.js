@@ -14,11 +14,7 @@ class FileType {
 const fileTypes = {
     html: new FileType('html', '.html', 'htmlmixed'),
     css: new FileType('css', '.css', 'css'),
-    javascript: new FileType('javacript', '.js', 'javascript', (tab, callback) => {
-        console.log(tab.compileDestination);
-        console.log('This is inside of the javascript compileFunction');
-        callback(['these', 'are', 'errors']);
-    }),
+    javascript: new FileType('javacript', '.js', 'javascript', CompileFunctions.debugTest),
     scss: new FileType('scss', '.scss', 'text/x-scss')
 }
 
