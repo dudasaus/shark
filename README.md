@@ -6,6 +6,7 @@ A text editor for web developers. Made for MHacks Nano.
 - Multiple tabs
 - HTML file preview
 - Built in preprocessing for SCSS and Babel
+- Bracket and tag auto closing and indentation
 - Keyboard shortcuts
 
 ## Technologies used
