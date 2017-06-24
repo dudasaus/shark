@@ -19,6 +19,8 @@ class Tab {
         this.saved = false;
         this.setName("New tab");
         this.index = index;
+        this.compileFunction = null;
+        this.compileDestination = null;
     }
 
     setAsNew() {
@@ -52,6 +54,9 @@ class Tab {
                     else {
                         that.saved = true;
                         that.node.classList.remove('unsaved');
+                        if (this.postSave != null) {
+                            this.postSave();
+                        }
                     }
                 });
             }
@@ -61,13 +66,42 @@ class Tab {
     saveAs() {
         var that = this;
         if (this.mode != 'welcome') {
-            remote.dialog.showSaveDialog({}, (file) => {
+            remote.dialog.showSaveDialog({
+                defaultPath: remote.app.getPath('home')
+            }, (file) => {
                 if (file != undefined) {
                     that.filePath = file;
                     that.setName(path.basename(file));
                     that.save();
                 }
             });
+        }
+    }
+
+    compile() {
+        var that = this;
+        if (this.compileFunction != null && this.saved) {
+            if (this.compileDestination == null) {
+                remote.dialog.showMessageBox({
+                    message: "Set this files compilation destination"
+                });
+                remote.dialog.showSaveDialog({
+                    defaultPath: remote.app.getPath('home')
+                }, (file) => {
+                    that.compileDestination = file;
+                    that.compileFunction(that.compileDestination, (errors) => {
+                        console.log(errors);
+                        console.log(that.compileDestination);
+                    })
+
+                });
+            }
+            else {
+                this.compileFunction(this.compileDestination, (errors) => {
+                    console.log(errors);
+                    console.log(that.compileDestination);
+                })
+            }
         }
     }
 

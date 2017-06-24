@@ -132,3 +132,17 @@ document.getElementById("menu-btn-preview").addEventListener("click", () => {
 Mousetrap.bind(['ctrl+p','command+p'], previewHtml);
 keyboardShortcuts['Ctrl-P'] = previewHtml;
 keyboardShortcuts['Cmd-P'] = previewHtml;
+
+// Compile
+function compileButton() {
+    var tab = panels[activePanel].currentTab();
+    tab.compile();
+}
+document.getElementById("menu-btn-compile").addEventListener("click", () => {
+    panels[activePanel].currentTab().compileFunction = (dest, callback) => {
+        console.log("this is the compilation function to " + dest);
+        if (callback != null) callback(["these", "are", "errors?"]);
+    }
+    compileButton();
+    closeMenu();
+});

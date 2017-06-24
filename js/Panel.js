@@ -5,7 +5,7 @@ class Panel {
         this.node.innerHTML = `
             <div class="tabs-container">
                 <div class="tabs">
-                    <span class="menu-tab" id="menu-btn">M</span>
+                    <span class="menu-tab" id="menu-btn">&#9776;</span>
                     <span class="new-tab">+</span>
                 </div>
             </div>
@@ -94,7 +94,11 @@ class Panel {
 
     openFile() {
         var that = this;
-        remote.dialog.showOpenDialog({}, (file) => {
+        remote.dialog.showOpenDialog({
+            properties: ['openFile'],
+            filters: webFileFilter,
+            defaultPath: remote.app.getPath('home')
+        }, (file) => {
             if (file != undefined && file.length != 0) {
                 file = file[0];
                 var ext = path.extname(file);
@@ -230,5 +234,9 @@ class Panel {
         }
     }
 }
+
+const webFileFilter = [
+    { name: 'front end files', extensions: ['html', 'css', 'js']}
+];
 
 module.exports = Panel;
