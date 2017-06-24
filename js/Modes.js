@@ -15,7 +15,7 @@ const fileTypes = {
     html: new FileType('html', '.html', 'htmlmixed'),
     css: new FileType('css', '.css', 'css'),
     javascript: new FileType('javacript', '.js', 'javascript', CompileFunctions.debugTest),
-    scss: new FileType('scss', '.scss', 'text/x-scss')
+    scss: new FileType('scss', '.scss', 'text/x-scss', CompileFunctions.scss)
 }
 
 // FileFilter for dialogs
