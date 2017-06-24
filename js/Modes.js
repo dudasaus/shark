@@ -1,9 +1,4 @@
-const modeData = {
-        htmlmixed: '.html',
-        css: '.css',
-        javascript: '.js'
-};
-
+// FileType class
 class FileType {
     constructor(name, extension, cmMode, compileFunction = null) {
         this.name = name;
@@ -13,6 +8,7 @@ class FileType {
     }
 }
 
+// Collection of supported file types
 const fileTypes = {
     html: new FileType('html', '.html', 'htmlmixed'),
     css: new FileType('css', '.css', 'css'),
@@ -20,25 +16,17 @@ const fileTypes = {
     scss: new FileType('scss', '.scss', 'text/x-scss')
 }
 
+// FileFilter for dialogs
+var webFileFilter = [
+    { name: 'front end files', extensions: []}
+];
+for (let i in fileTypes) {
+    webFileFilter[0].extensions.push(fileTypes[i].name);
+}
+
+
+
 module.exports = {
-    modeToExt: (m) => {
-        for (var f in fileTypes) {
-            if (m == fileTypes[f].cmMode) {
-                return fileTypes[f].extension;
-            }
-        }
-        console.log(`mode ${m} doesn't exist`);
-        return null;
-    },
-    extToMode: (e) => {
-        for (var f in fileTypes) {
-            if (e = fileTypes[f].extension) {
-                return mode;
-            }
-        }
-        console.log(`ext ${e} isn't supported`);
-        return null;
-    },
     findMode: (mode) => {
         for (var i in fileTypes) {
             if (mode == fileTypes[i].cmMode) {
@@ -56,5 +44,6 @@ module.exports = {
         }
         console.log(`extension ${extension} not found`);
         return null;
-    }
+    },
+    webFileFilter: webFileFilter
 }

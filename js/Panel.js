@@ -96,7 +96,7 @@ class Panel {
         var that = this;
         remote.dialog.showOpenDialog({
             properties: ['openFile'],
-            filters: webFileFilter,
+            filters: Modes.webFileFilter,
             defaultPath: remote.app.getPath('home')
         }, (file) => {
             if (file != undefined && file.length != 0) {
@@ -236,8 +236,8 @@ class Panel {
     }
 }
 
-const webFileFilter = [
-    { name: 'front end files', extensions: ['html', 'css', 'js']}
-];
+// const webFileFilter = [
+//     { name: 'front end files', extensions: ['html', 'css', 'js']}
+// ];
 
 module.exports = Panel;
