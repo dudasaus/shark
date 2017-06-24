@@ -14,10 +14,10 @@ class FileType {
 }
 
 const fileTypes = {
-    html = new FileType('html', '.html', 'htmlmixed'),
-    css = new FileType('css', '.css', 'css'),
-    javascript = new FileType('javacript', '.js', 'javascript'),
-    scss = new FileType('scss', '.scss', 'text/x-scss')
+    html: new FileType('html', '.html', 'htmlmixed'),
+    css: new FileType('css', '.css', 'css'),
+    javascript: new FileType('javacript', '.js', 'javascript'),
+    scss: new FileType('scss', '.scss', 'text/x-scss')
 }
 
 module.exports = {

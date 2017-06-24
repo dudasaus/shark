@@ -102,7 +102,8 @@ class Panel {
             if (file != undefined && file.length != 0) {
                 file = file[0];
                 var ext = path.extname(file);
-                var mode = Modes.extToMode(ext);
+                var fileType = Modes.findExtension(ext);
+                var mode = fileType.cmMode;
                 if (mode != null) {
                     var tab = that.newTab(false);
                     that.makeEditor(mode);
