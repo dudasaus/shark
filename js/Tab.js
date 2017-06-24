@@ -99,11 +99,9 @@ class Tab {
                 });
             }
             else {
-                this.compileFunction(that, (errors) => {
+                this.fileType.compileFunction(that, (errors) => {
                     console.log(errors);
-                    console.log(that.compileDestination);
-                    console.log("Above should be the compileDestination");
-                })
+                });
             }
         }
     }

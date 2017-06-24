@@ -14,8 +14,9 @@ class FileType {
 const fileTypes = {
     html: new FileType('html', '.html', 'htmlmixed'),
     css: new FileType('css', '.css', 'css'),
-    javascript: new FileType('javacript', '.js', 'javascript', CompileFunctions.debugTest),
-    scss: new FileType('scss', '.scss', 'text/x-scss', CompileFunctions.scss)
+    javascript: new FileType('javacript', '.js', 'javascript'),
+    scss: new FileType('scss', '.scss', 'text/x-scss', CompileFunctions.scss),
+    babel: new FileType('babel', '.babel', 'jsx', CompileFunctions.babel)
 }
 
 // FileFilter for dialogs

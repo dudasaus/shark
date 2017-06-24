@@ -140,10 +140,6 @@ function compileButton() {
     tab.compile();
 }
 document.getElementById("menu-btn-compile").addEventListener("click", () => {
-    panels[activePanel].currentTab().compileFunction = (dest, callback) => {
-        console.log("this is the compilation function to " + dest);
-        if (callback != null) callback(["these", "are", "errors?"]);
-    }
     compileButton();
     closeMenu();
 });

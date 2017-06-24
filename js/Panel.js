@@ -1,3 +1,16 @@
+const welcomePanelHTML = `
+        <h1>Welcome to Shark</h1>
+        <p>
+            A text editor built for web developers. <br/>
+            Click below to make a new file.
+        </p>
+        <div class="buttons">
+            <button id="new-html" class="btn">HTML</button>
+            <button id="new-css" class="btn">CSS</button>
+            <button id="new-scss" class="btn">SCSS</button>
+            <button id="new-js" class="btn">JS</button>
+        </div>`;
+
 class Panel {
     constructor() {
         this.node = document.createElement("div");
@@ -11,16 +24,7 @@ class Panel {
             </div>
 
             <div class="welcome-panel panel-content">
-                <h1>Welcome to Shark</h1>
-                <p>
-                    A text editor built for web developers. <br/>
-                    Click below to make a new file.
-                </p>
-                <div class="buttons">
-                    <button id="new-html" class="btn">HTML</button>
-                    <button id="new-css" class="btn">CSS</button>
-                    <button id="new-js" class="btn">JS</button>
-                </div>
+                ${welcomePanelHTML}
             </div>`;
 
         this.tabs = [];
@@ -176,22 +180,16 @@ class Panel {
         }
 
         this.node.querySelector('#new-html').addEventListener('click', () => {
-            // that.makeEditor('htmlmixed');
-            // that.setCurrentTabName('untitled.html');
-            // that.tabs[this.activeTab].mode = 'htmlmixed';
             updateFileType(Modes.findName("html"));
         });
         this.node.querySelector('#new-css').addEventListener('click', () => {
-            // that.makeEditor('css');
-            // that.setCurrentTabName('untitled.css');
-            // that.tabs[this.activeTab].mode = 'css';
             updateFileType(Modes.findName("css"));
         });
         this.node.querySelector('#new-js').addEventListener('click', () => {
-            // that.makeEditor('javascript');
-            // that.setCurrentTabName('untitled.js');
-            // that.tabs[this.activeTab].mode = 'javascript';
             updateFileType(Modes.findName("javascript"));
+        });
+        this.node.querySelector('#new-scss').addEventListener('click', () => {
+            updateFileType(Modes.findName("scss"));
         });
     }
 
@@ -219,17 +217,7 @@ class Panel {
         if (this.node.querySelector('welcome-panel') == null) {
             var freshPanel = document.createElement("div");
             freshPanel.classList.add("panel-content", "welcome-panel");
-            freshPanel.innerHTML = `
-                    <h1>Welcome to Shark</h1>
-                    <p>
-                        A text editor built for web developers. <br/>
-                        Click below to make a new file.
-                    </p>
-                    <div class="buttons">
-                        <button id="new-html" class="btn">HTML</button>
-                        <button id="new-css" class="btn">CSS</button>
-                        <button id="new-js" class="btn">JS</button>
-                    </div>`;
+            freshPanel.innerHTML = welcomePanelHTML;
             this.node.replaceChild(freshPanel, this.node.querySelector('.panel-content'));
             this.editor = null;
             this.welcomeButtons();
