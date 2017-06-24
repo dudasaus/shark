@@ -9,6 +9,7 @@ const welcomePanelHTML = `
             <button id="new-css" class="btn">CSS</button>
             <button id="new-scss" class="btn">SCSS</button>
             <button id="new-js" class="btn">JS</button>
+            <button id="new-babel" class="btn">Babel</button>
         </div>`;
 
 class Panel {
@@ -190,6 +191,9 @@ class Panel {
         });
         this.node.querySelector('#new-scss').addEventListener('click', () => {
             updateFileType(Modes.findName("scss"));
+        });
+        this.node.querySelector('#new-babel').addEventListener('click', () => {
+            updateFileType(Modes.findName("babel"));
         });
     }
 

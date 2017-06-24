@@ -143,3 +143,6 @@ document.getElementById("menu-btn-compile").addEventListener("click", () => {
     compileButton();
     closeMenu();
 });
+Mousetrap.bind(['ctrl+alt+c','command+alt+c'], compileButton);
+keyboardShortcuts['Ctrl-Alt-C'] = compileButton;
+keyboardShortcuts['Cmd-Alt-C'] = compileButton;

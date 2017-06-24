@@ -92,15 +92,26 @@ class Tab {
                 }, (file) => {
                     that.compileDestination = file;
                     that.fileType.compileFunction(that, (errors) => {
-                        console.log(errors);
-                        // console.log(that.compileDestination);
+                        if (errors) {
+                            console.log(errors);
+                            remote.dialog.showMessageBox({
+                                message: errors.toString(),
+                                buttons: ['Ok']
+                            });
+                        }
                     })
 
                 });
             }
             else {
                 this.fileType.compileFunction(that, (errors) => {
-                    console.log(errors);
+                    if (errors) {
+                        console.log(errors);
+                        remote.dialog.showMessageBox({
+                            message: errors.toString(),
+                            buttons: ['Ok']
+                        });
+                    }
                 });
             }
         }
