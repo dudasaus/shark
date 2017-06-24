@@ -114,7 +114,7 @@ class Panel {
                         else {
                             that.editor.setValue(data);
                             tab.setName(path.basename(file));
-                            tab.mode = mode;
+                            tab.fileType = fileType;
                             tab.filePath = file;
                             tab.saved = true;
                         }
@@ -134,12 +134,12 @@ class Panel {
         }
         this.activeTab = destIndex;
         var destTab = this.tabs[destIndex];
-        if (destTab.mode == 'welcome') {
+        if (destTab.fileType == null) {
             this.makeWelcomeTab();
         }
         else {
             var tempSaved = destTab.saved;
-            this.makeEditor(destTab.mode);
+            this.makeEditor(destTab.fileType.cmMode);
             this.editor.setValue(destTab.content);
             if (tempSaved) {
                 destTab.saved = true;
@@ -162,29 +162,36 @@ class Panel {
             }
         }
         catch (err) {
-            // console.log("activeTab: ", this.activeTab);
-            // console.log("tabs.length: ", this.tabs.length);
-            // console.log("tabs[activeTab]: ", this.tabs[this.activeTab]);
             console.error(err);
         }
     }
 
     welcomeButtons() {
         var that = this;
+
+        function updateFileType(fileType) {
+            that.makeEditor(fileType.cmMode);
+            that.setCurrentTabName('untitled' + fileType.extension)
+            that.currentTab().fileType = fileType;
+        }
+
         this.node.querySelector('#new-html').addEventListener('click', () => {
-            that.makeEditor('htmlmixed');
-            that.setCurrentTabName('untitled.html');
-            that.tabs[this.activeTab].mode = 'htmlmixed';
+            // that.makeEditor('htmlmixed');
+            // that.setCurrentTabName('untitled.html');
+            // that.tabs[this.activeTab].mode = 'htmlmixed';
+            updateFileType(Modes.findName("html"));
         });
         this.node.querySelector('#new-css').addEventListener('click', () => {
-            that.makeEditor('css');
-            that.setCurrentTabName('untitled.css');
-            that.tabs[this.activeTab].mode = 'css';
+            // that.makeEditor('css');
+            // that.setCurrentTabName('untitled.css');
+            // that.tabs[this.activeTab].mode = 'css';
+            updateFileType(Modes.findName("css"));
         });
         this.node.querySelector('#new-js').addEventListener('click', () => {
-            that.makeEditor('javascript');
-            that.setCurrentTabName('untitled.js');
-            that.tabs[this.activeTab].mode = 'javascript';
+            // that.makeEditor('javascript');
+            // that.setCurrentTabName('untitled.js');
+            // that.tabs[this.activeTab].mode = 'javascript';
+            updateFileType(Modes.findName("javascript"));
         });
     }
 
@@ -235,9 +242,5 @@ class Panel {
         }
     }
 }
-
-// const webFileFilter = [
-//     { name: 'front end files', extensions: ['html', 'css', 'js']}
-// ];
 
 module.exports = Panel;

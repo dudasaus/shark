@@ -103,7 +103,7 @@ keyboardShortcuts['Cmd-O'] = openButton;
 previewWindow = null;
 function previewHtml() {
     var tab = panels[activePanel].currentTab();
-    if (tab.mode == "htmlmixed" && tab.filePath != null) {
+    if (tab.fileType.name == "html" && tab.filePath != null) {
         tab.save();
         if (previewWindow == null) {
             previewWindow = new remote.BrowserWindow({

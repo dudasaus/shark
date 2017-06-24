@@ -25,7 +25,7 @@ for (let i in fileTypes) {
 }
 
 
-
+// Exports
 module.exports = {
     findMode: (mode) => {
         for (var i in fileTypes) {
@@ -43,6 +43,13 @@ module.exports = {
             }
         }
         console.log(`extension ${extension} not found`);
+        return null;
+    },
+    findName: (name) => {
+        if (fileTypes[name] != null) {
+            return fileTypes[name];
+        }
+        console.log(`filetype ${name} not found`);
         return null;
     },
     webFileFilter: webFileFilter

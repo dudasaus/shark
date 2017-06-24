@@ -12,7 +12,8 @@ class Tab {
         this.node.appendChild(tabClose);
 
         // Properties
-        this.mode = "welcome";
+        // this.mode = "welcome";
+        this.fileType = null;
         this.name = "New tab";
         this.content = "";
         this.filePath = null;
@@ -34,7 +35,7 @@ class Tab {
 
     save() {
         var that = this;
-        if (this.mode != 'welcome') {
+        if (this.fileType != null) {
             if (this.filePath == null) {
                 remote.dialog.showSaveDialog({
                     defaultPath: remote.app.getPath('home')
@@ -65,7 +66,7 @@ class Tab {
 
     saveAs() {
         var that = this;
-        if (this.mode != 'welcome') {
+        if (this.fileType != null) {
             remote.dialog.showSaveDialog({
                 defaultPath: remote.app.getPath('home')
             }, (file) => {
