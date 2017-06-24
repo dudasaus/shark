@@ -1,4 +1,5 @@
 // Compile Functions
+const sass = require('node-sass');
 
 var output = {
     scss(tab, callback) {
