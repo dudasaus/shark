@@ -1,15 +1,10 @@
 const CodeMirror = require("codemirror");
 const fs = require('fs');
 require("codemirror/mode/htmlmixed/htmlmixed");
-// require("codemirror/mode/css/css.js");
 require("codemirror/addon/edit/closebrackets.js");
 require("codemirror/addon/edit/closetag.js");
 require("codemirror/addon/edit/matchbrackets.js");
 require("codemirror/addon/edit/matchtags.js");
-// require("codemirror/addon/hint/show-hint.js")
-// require("codemirror/addon/hint/css-hint.js");
-// require("codemirror/addon/fold/xml-fold.js");
-//addon/fold/xml-fold.js
 
 CodeMirror.keyMap.default["Shift-Tab"] = "indentLess";
 CodeMirror.keyMap.default["Tab"] = "indentMore";

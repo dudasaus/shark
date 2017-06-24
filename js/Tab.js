@@ -81,26 +81,28 @@ class Tab {
 
     compile() {
         var that = this;
-        if (this.compileFunction != null && this.saved) {
+        if (this.fileType.compileFunction != null && this.saved) {
             if (this.compileDestination == null) {
                 remote.dialog.showMessageBox({
-                    message: "Set this files compilation destination"
+                    message: "Set this file's compilation destination",
+                    buttons: ['Ok']
                 });
                 remote.dialog.showSaveDialog({
                     defaultPath: remote.app.getPath('home')
                 }, (file) => {
                     that.compileDestination = file;
-                    that.compileFunction(that.compileDestination, (errors) => {
+                    that.fileType.compileFunction(that, (errors) => {
                         console.log(errors);
-                        console.log(that.compileDestination);
+                        // console.log(that.compileDestination);
                     })
 
                 });
             }
             else {
-                this.compileFunction(this.compileDestination, (errors) => {
+                this.compileFunction(that, (errors) => {
                     console.log(errors);
                     console.log(that.compileDestination);
+                    console.log("Above should be the compileDestination");
                 })
             }
         }

@@ -8,11 +8,17 @@ class FileType {
     }
 }
 
+// Compilation functions: (tab, callback)
+
 // Collection of supported file types
 const fileTypes = {
     html: new FileType('html', '.html', 'htmlmixed'),
     css: new FileType('css', '.css', 'css'),
-    javascript: new FileType('javacript', '.js', 'javascript'),
+    javascript: new FileType('javacript', '.js', 'javascript', (tab, callback) => {
+        console.log(tab.compileDestination);
+        console.log('This is inside of the javascript compileFunction');
+        callback(['these', 'are', 'errors']);
+    }),
     scss: new FileType('scss', '.scss', 'text/x-scss')
 }
 
@@ -21,7 +27,7 @@ var webFileFilter = [
     { name: 'front end files', extensions: []}
 ];
 for (let i in fileTypes) {
-    webFileFilter[0].extensions.push(fileTypes[i].name);
+    webFileFilter[0].extensions.push(fileTypes[i].extension.substr(1));
 }
 
 
