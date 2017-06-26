@@ -30,6 +30,8 @@ var output = {
     babel(tab, callback) {
         try {
             var result = babel.transform(tab.content, { presets: ["env"] });
+            console.log(babel);
+            console.log(process.cwd());
         }
         catch(err) {
             console.log(err);

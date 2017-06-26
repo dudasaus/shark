@@ -12,8 +12,8 @@ var win;
 function createWindow() {
     // Create window object
     win = new electron.BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1200,
+        height: 800,
         frame: false,
         show: false
     });
@@ -28,6 +28,7 @@ function createWindow() {
     // Show window when ready
     win.once('ready-to-show', () => {
         win.show();
+        win.openDevTools();
     });
 
     // Delete the window when gone
