@@ -21,6 +21,7 @@ cd shark
 npm install
 make
 ```
+or you can `make build` to build an executable.
 
 ## Planned features
 - Pug HTML preprocessing
