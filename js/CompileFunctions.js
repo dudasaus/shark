@@ -29,9 +29,9 @@ var output = {
     // Babel
     babel(tab, callback) {
         try {
-            var result = babel.transform(tab.content, { presets: ["env"] });
-            console.log(babel);
-            console.log(process.cwd());
+            // Have to use specified path for build 
+            var presetPath = path.join(remote.app.getAppPath(), 'node_modules', 'babel-preset-env');
+            var result = babel.transform(tab.content, { presets: [ presetPath ] });
         }
         catch(err) {
             console.log(err);
