@@ -27,8 +27,9 @@ function createWindow() {
 
     // Show window when ready
     win.once('ready-to-show', () => {
+        win.setMenu(null);
         win.show();
-        win.openDevTools();
+        // win.openDevTools();
     });
 
     // Delete the window when gone

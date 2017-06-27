@@ -62,6 +62,15 @@ Mousetrap.bind(['ctrl+n','command+n'], newButton);
 keyboardShortcuts['Ctrl-N'] = newButton;
 keyboardShortcuts['Cmd-N'] = newButton;
 
+// Close current tab (no button)
+function closeCurrentTab() {
+    panels[activePanel].closeTab(panels[activePanel].activeTab);
+}
+Mousetrap.bind(['ctrl+w','command+w'], closeCurrentTab);
+keyboardShortcuts['Ctrl-W'] = closeCurrentTab;
+keyboardShortcuts['Cmd-W'] = closeCurrentTab;
+
+
 // Save
 function saveButton() {
     panels[activePanel].updateCurrentTabContent();
