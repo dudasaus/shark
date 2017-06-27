@@ -29,7 +29,7 @@ function createWindow() {
     win.once('ready-to-show', () => {
         win.setMenu(null);
         win.show();
-        // win.openDevTools();
+        win.openDevTools();
     });
 
     // Delete the window when gone

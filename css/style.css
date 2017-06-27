@@ -115,6 +115,14 @@ header {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center; }
+    .welcome-panel div.buttons div.buttons-col {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
     .welcome-panel div.buttons button {
       margin: 8px; }
 
@@ -160,7 +168,7 @@ header {
             right: 0;
         }*/ }
     .overlay .menu .menu-bar {
-      padding: 4px;
+      padding: 12px 8px;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;

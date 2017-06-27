@@ -5,11 +5,17 @@ const welcomePanelHTML = `
             Click below to make a new file.
         </p>
         <div class="buttons">
-            <button id="new-html" class="btn">HTML</button>
-            <button id="new-css" class="btn">CSS</button>
-            <button id="new-scss" class="btn">SCSS</button>
-            <button id="new-js" class="btn">JS</button>
-            <button id="new-babel" class="btn">Babel</button>
+            <div class="buttons-col">
+                <button id="new-html" class="btn">HTML</button>
+            </div>
+            <div class="buttons-col">
+                <button id="new-css" class="btn">CSS</button>
+                <button id="new-scss" class="btn">SCSS</button>
+            </div>
+            <div class="buttons-col">
+                <button id="new-js" class="btn">JS</button>
+                <button id="new-babel" class="btn">Babel</button>
+            </div>
         </div>`;
 
 class Panel {

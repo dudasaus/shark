@@ -80,6 +80,7 @@ class Tab {
     }
 
     compile() {
+        console.log(this.searchForCompileDest());
         var that = this;
         if (this.fileType.compileFunction != null && this.saved) {
             if (this.compileDestination == null) {
@@ -90,6 +91,7 @@ class Tab {
                 remote.dialog.showSaveDialog({
                     defaultPath: remote.app.getPath('home')
                 }, (file) => {
+                    if (file == null) return;
                     that.compileDestination = file;
                     that.fileType.compileFunction(that, (errors) => {
                         if (errors) {
@@ -115,6 +117,19 @@ class Tab {
                 });
             }
         }
+    }
+
+    // Return string compileDest if found, null otherwise
+    searchForCompileDest() {
+        var compileDestMarker = 'SharkCompileDestination{';
+        var pos = this.content.indexOf(compileDestMarker);
+        if (pos != -1) {
+            var posEnd = this.content.indexOf('}');
+            if (posEnd != -1) {
+                return this.content.substring(pos + compileDestMarker.length, posEnd);
+            }
+        }
+        return null;
     }
 
     markChange(content = null) {

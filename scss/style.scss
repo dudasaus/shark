@@ -102,6 +102,10 @@ header {
     div.buttons {
         display: flex;
         justify-content: center;
+        div.buttons-col {
+            display: flex;
+            flex-direction: column;
+        }
         button {
             margin: 8px
         }
@@ -149,7 +153,7 @@ header {
         right: calc(100% - 300px);
         transition: right 0.2s;
         .menu-bar {
-            padding: 4px;
+            padding: 12px 8px;
             display: flex;
             justify-content: space-between;
         }

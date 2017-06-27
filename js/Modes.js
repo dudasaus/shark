@@ -1,22 +1,34 @@
 // FileType class
 class FileType {
-    constructor(name, extension, cmMode, compileFunction = null) {
+    constructor(name, extension, cmMode, comment, compileFunction = null) {
         this.name = name;
         this.extension = extension;
         this.cmMode = cmMode;
         this.compileFunction = compileFunction;
+        this.comment = comment;
     }
 }
+
+// Comment class (start + end)
+class Comment {
+    constructor(start, end) {
+        this.start = start;
+        this.end = end;
+    }
+}
+
+const commentHtml = new Comment("<!--", "-->");
+const commentJavascript = new Comment("/*", "*/");
 
 // Compilation functions: (tab, callback)
 
 // Collection of supported file types
 const fileTypes = {
-    html: new FileType('html', '.html', 'htmlmixed'),
-    css: new FileType('css', '.css', 'css'),
-    javascript: new FileType('javacript', '.js', 'javascript'),
-    scss: new FileType('scss', '.scss', 'text/x-scss', CompileFunctions.scss),
-    babel: new FileType('babel', '.babel', 'jsx', CompileFunctions.babel)
+    html: new FileType('html', '.html', 'htmlmixed', commentHtml),
+    css: new FileType('css', '.css', 'css', commentJavascript),
+    javascript: new FileType('javacript', '.js', 'javascript', commentJavascript),
+    scss: new FileType('scss', '.scss', 'text/x-scss', commentJavascript, CompileFunctions.scss),
+    babel: new FileType('babel', '.babel', 'jsx', commentJavascript, CompileFunctions.babel)
 }
 
 // FileFilter for dialogs
