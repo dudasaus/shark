@@ -84,6 +84,12 @@ class Tab {
         var that = this;
         if (this.fileType.compileFunction != null && this.saved) {
             if (this.compileDestination == null) {
+                var foundCompileDest = this.searchForCompileDest();
+                if (foundCompileDest != null) {
+                    this.compileDestination = foundCompileDest;
+                    this.compile();
+                    return;
+                }
                 remote.dialog.showMessageBox({
                     message: "Set this file's compilation destination",
                     buttons: ['Ok']
@@ -93,7 +99,7 @@ class Tab {
                 }, (file) => {
                     if (file == null) return;
                     that.compileDestination = file;
-                    that.fileType.compileFunction(that, (errors) => {
+                    /* that.fileType.compileFunction(that, (errors) => {
                         if (errors) {
                             console.log(errors);
                             remote.dialog.showMessageBox({
@@ -101,8 +107,12 @@ class Tab {
                                 buttons: ['Ok']
                             });
                         }
-                    })
-
+                    })*/
+                    var newLine = `${that.fileType.comment.start} SharkCompileDestination{${file}} ${that.fileType.comment.end}\n`;
+                    that.content = newLine + that.content;
+                    // Grabbing active panel in a sketchy global variable way?
+                    panels[activePanel].editor.setValue(that.content);
+                    that.compile();
                 });
             }
             else {
