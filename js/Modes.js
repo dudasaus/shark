@@ -19,6 +19,7 @@ class Comment {
 
 const commentHtml = new Comment("<!--", "-->");
 const commentJavascript = new Comment("/*", "*/");
+const commentPug = new Comment("//", "");
 
 // Compilation functions: (tab, callback)
 
@@ -28,7 +29,8 @@ const fileTypes = {
     css: new FileType('css', '.css', 'css', commentJavascript),
     javascript: new FileType('javacript', '.js', 'javascript', commentJavascript),
     scss: new FileType('scss', '.scss', 'text/x-scss', commentJavascript, CompileFunctions.scss),
-    babel: new FileType('babel', '.babel', 'jsx', commentJavascript, CompileFunctions.babel)
+    babel: new FileType('babel', '.babel', 'jsx', commentJavascript, CompileFunctions.babel),
+    pug: new FileType('pug', '.pug', 'pug', commentPug, CompileFunctions.pug)
 }
 
 // FileFilter for dialogs

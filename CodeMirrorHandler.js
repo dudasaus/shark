@@ -2,6 +2,7 @@ const CodeMirror = require("codemirror");
 const fs = require('fs');
 require("codemirror/mode/htmlmixed/htmlmixed");
 require("codemirror/mode/jsx/jsx");
+require("codemirror/mode/pug/pug");
 require("codemirror/addon/edit/closebrackets.js");
 require("codemirror/addon/edit/closetag.js");
 require("codemirror/addon/edit/matchbrackets.js");

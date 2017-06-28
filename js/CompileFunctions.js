@@ -1,6 +1,7 @@
 // Compile Functions
 const sass = require('node-sass');
 const babel = require('babel-core');
+const pug = require('pug');
 
 var output = {
     // SCSS
@@ -29,14 +30,37 @@ var output = {
     // Babel
     babel(tab, callback) {
         try {
-            // Have to use specified path for build 
+            // Have to use specified path for build
             var presetPath = path.join(remote.app.getAppPath(), 'node_modules', 'babel-preset-env');
             var result = babel.transform(tab.content, { presets: [ presetPath ] });
         }
         catch(err) {
-            console.log(err);
+            callback(err);
+            return;
         }
         fs.writeFile(tab.compileDestination, result.code, (err) => {
+            if (err) {
+                console.log(err);
+                callback(err);
+                return;
+            }
+            else {
+                callback();
+            }
+        });
+    },
+
+    // pug
+    pug(tab, callback) {
+        var output;
+        try {
+            output = pug.render(tab.content);
+        }
+        catch (err) {
+            callback(err);
+            return;
+        }
+        fs.writeFile(tab.compileDestination, output, (err) => {
             if (err) {
                 console.log(err);
                 callback(err);

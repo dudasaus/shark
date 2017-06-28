@@ -99,15 +99,6 @@ class Tab {
                 }, (file) => {
                     if (file == null) return;
                     that.compileDestination = file;
-                    /* that.fileType.compileFunction(that, (errors) => {
-                        if (errors) {
-                            console.log(errors);
-                            remote.dialog.showMessageBox({
-                                message: errors.toString(),
-                                buttons: ['Ok']
-                            });
-                        }
-                    })*/
                     var newLine = `${that.fileType.comment.start} SharkCompileDestination{${file}} ${that.fileType.comment.end}\n`;
                     that.content = newLine + that.content;
                     // Grabbing active panel in a sketchy global variable way?

@@ -7,6 +7,7 @@ const welcomePanelHTML = `
         <div class="buttons">
             <div class="buttons-col">
                 <button id="new-html" class="btn">HTML</button>
+                <button id="new-pug" class="btn">Pug</button>
             </div>
             <div class="buttons-col">
                 <button id="new-css" class="btn">CSS</button>
@@ -188,6 +189,9 @@ class Panel {
 
         this.node.querySelector('#new-html').addEventListener('click', () => {
             updateFileType(Modes.findName("html"));
+        });
+        this.node.querySelector('#new-pug').addEventListener('click', () => {
+            updateFileType(Modes.findName("pug"));
         });
         this.node.querySelector('#new-css').addEventListener('click', () => {
             updateFileType(Modes.findName("css"));
