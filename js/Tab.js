@@ -55,9 +55,9 @@ class Tab {
                     else {
                         that.saved = true;
                         that.node.classList.remove('unsaved');
-                        if (this.postSave != null) {
-                            this.postSave();
-                        }
+                        // if (this.postSave != null) {
+                        //     this.postSave();
+                        // }
                     }
                 });
             }

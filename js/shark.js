@@ -115,6 +115,13 @@ function previewHtml() {
     var tab = panels[activePanel].currentTab();
     if (tab.fileType.name == "html" && tab.filePath != null) {
         tab.save();
+        previewWindowUrl(tab.filePath);
+    }
+    else if (tab.fileType.name == "pug" && tab.compileDestination != null) {
+        tab.compile();
+        previewWindowUrl(tab.compileDestination);
+    }
+    function previewWindowUrl(file) {
         if (previewWindow == null) {
             previewWindow = new remote.BrowserWindow({
                 show: true,
@@ -128,7 +135,7 @@ function previewHtml() {
             previewWindow.show();
         }
         previewWindow.loadURL(url.format({
-            pathname: tab.filePath,
+            pathname: file,
             protocol: 'file:',
             slashes: true
         }));
